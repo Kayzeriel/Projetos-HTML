@@ -2,272 +2,568 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cartão de Visita — Elissandro Romão</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="icon" type="image/png" sizes="16x16" href="https://ceasa.rs.gov.br/wp-content/uploads/2022/06/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://ceasa.rs.gov.br/wp-content/uploads/2022/06/favicon-32x32.png">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --verde-mata:  #1F3B2C;
-    --verde-folha: #4B7A3E;
-    --laranja:     #E2672A;
-    --creme:       #F6F1E4;
-    --grafite:     #241F18;
-    --linha:       rgba(246,241,228,0.22);
+:root {
+  --verde-escuro: #17382a;
+  --verde: #3f7139;
+  --verde-claro: #e9f0e7;
+  --laranja: #e4672a;
+  --creme: #f8f5ec;
+  --branco: #ffffff;
+  --texto: #25251f;
+  --texto-suave: #77776f;
+  --borda: #e6e3da;
+  --sombra: 0 24px 60px rgba(23, 56, 42, .18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 32px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, #f4f1e7 0, transparent 35%),
+    #e4e0d5;
+  font-family: "DM Sans", sans-serif;
+  color: var(--texto);
+}
+
+/* =========================
+   CARTÃO
+========================= */
+
+.cartao {
+  width: min(100%, 760px);
+  min-height: 430px;
+  display: grid;
+  grid-template-columns: 38% 62%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--creme);
+  box-shadow: var(--sombra);
+}
+
+/* =========================
+   LADO ESQUERDO
+========================= */
+
+.identidade {
+  position: relative;
+  overflow: hidden;
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--creme);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.04), transparent 55%),
+    var(--verde-escuro);
+}
+
+.identidade::before {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -110px;
+  bottom: -100px;
+  border-radius: 50%;
+  background: var(--laranja);
+  opacity: .15;
+}
+
+.identidade::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: -95px;
+  top: 40%;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+}
+
+/* Logo */
+
+.logo {
+  position: relative;
+  z-index: 2;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: var(--laranja);
+  color: var(--verde-escuro);
+  font-family: "Fraunces", serif;
+  font-size: 23px;
+  font-weight: 700;
+  box-shadow: 0 12px 25px rgba(0,0,0,.15);
+}
+
+.marca {
+  position: relative;
+  z-index: 2;
+}
+
+.nome-banca {
+  margin: 0 0 8px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+
+.segmento {
+  margin: 0;
+  max-width: 180px;
+  color: rgba(248,245,236,.72);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================
+   LADO DIREITO
+========================= */
+
+.contato {
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--creme);
+}
+
+.contato-topo {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.titular {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  color: var(--texto);
+}
+
+.cargo {
+  margin: 8px 0 30px;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.lista-info {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.linha-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--texto);
+}
+
+.icone {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #f0ece2;
+  color: var(--laranja);
+}
+
+.icone svg {
+  width: 17px;
+  height: 17px;
+}
+
+.linha-info span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.rodape {
+  margin-top: 35px;
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--borda);
+}
+
+.rede-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--texto);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+.rede-link:hover {
+  color: var(--laranja);
+}
+
+.icone-rede {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--verde-escuro);
+  color: var(--creme);
+}
+
+.icone-rede svg {
+  width: 15px;
+  height: 15px;
+}
+
+.cidade {
+  color: var(--verde);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 650px) {
+
+  body {
+    padding: 20px 14px;
   }
 
-  *{ box-sizing: border-box; }
-
-  body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: #E7E2D3;
-    font-family:'Work Sans', sans-serif;
-    padding:40px 20px;
+  .cartao {
+    width: 100%;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    border-radius: 20px;
   }
 
-  /* ===== Cartão — proporção padrão 3.5 x 2 pol ===== */
-  .cartao{
-    width: 350px;
-    height: 200px;
-    display:flex;
-    border-radius: 14px;
-    overflow:hidden;
-    box-shadow: 0 18px 40px rgba(31,59,44,0.25);
-    background: var(--creme);
+  .identidade {
+    min-height: 230px;
+    padding: 28px;
   }
 
-  /* ----- Coluna esquerda: identidade ----- */
-  .identidade{
-    flex: 0 0 38%;
-    background: var(--verde-mata);
-    color: var(--creme);
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    padding:18px 16px;
-    position:relative;
-    overflow:hidden;
+  .logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+    font-size: 20px;
   }
 
-  .identidade::after{
-    content:"";
-    position:absolute;
-    right:-30px;
-    bottom:-30px;
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    background: var(--laranja);
-    opacity:0.16;
+  .nome-banca {
+    font-size: 28px;
   }
 
-  .selo{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background: var(--laranja);
-    color: var(--verde-mata);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:16px;
-    z-index:1;
+  .segmento {
+    font-size: 12px;
   }
 
-  .marca{
-    z-index:1;
+  .contato {
+    padding: 30px 28px;
   }
 
-  .marca .nome-banca{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:17px;
-    line-height:1.15;
-    margin:0 0 4px 0;
+  .titular {
+    font-size: 28px;
   }
 
-  .marca .segmento{
-    font-size:10.5px;
-    letter-spacing:0.02em;
-    color: var(--creme);
-    opacity:0.75;
-    margin:0;
+  .cargo {
+    margin-bottom: 24px;
   }
 
-  /* ----- Coluna direita: contato ----- */
-  .contato{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    padding:16px 18px;
+  .rodape {
+    margin-top: 30px;
+  }
+}
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+@media (max-width: 390px) {
+
+  body {
+    padding: 12px;
   }
 
-  .contato-topo{
-    display:flex;
-    flex-direction:column;
+  .identidade {
+    min-height: 205px;
+    padding: 24px;
   }
 
-  .titular{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:15px;
-    color: var(--grafite);
-    margin:0 0 1px 0;
+  .contato {
+    padding: 25px 22px;
   }
 
-  .cargo{
-    font-size:10.5px;
-    color: var(--verde-folha);
-    margin:0 0 10px 0;
-    font-weight:500;
+  .titular {
+    font-size: 25px;
   }
 
-  .lista-info{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+  .linha-info {
+    font-size: 12px;
   }
 
-  .linha-info{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-size:10.5px;
-    color: var(--grafite);
+  .icone {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
   }
 
-  .linha-info .icone{
-    flex:0 0 14px;
-    width:14px;
-    height:14px;
-    color: var(--laranja);
+  .cidade {
+    display: none;
+  }
+}
+
+/* =========================
+   IMPRESSÃO
+========================= */
+
+@media print {
+
+  body {
+    padding: 0;
+    background: white;
   }
 
-  .linha-info .icone svg{
-    width:100%;
-    height:100%;
-    display:block;
+  .cartao {
+    box-shadow: none;
   }
-
-  .linha-info span{
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  /* ----- Rodapé: rede social ----- */
-  .rodape{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-top:1px solid rgba(36,31,24,0.1);
-    padding-top:9px;
-    margin-top:6px;
-  }
-
-  .rede-link{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    text-decoration:none;
-    color: var(--grafite);
-    font-size:10px;
-    font-weight:500;
-  }
-
-  .rede-link .icone-rede{
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background: var(--verde-mata);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color: var(--creme);
-    flex:0 0 18px;
-  }
-
-  .rede-link .icone-rede svg{
-    width:10px;
-    height:10px;
-  }
-
-  .cidade{
-    font-size:9.5px;
-    color: var(--verde-folha);
-    font-weight:500;
-  }
-
+}
 </style>
 </head>
+
 <body>
 
-  <div class="cartao">
+<div class="cartao">
 
-    <!-- Coluna esquerda: identidade visual / logotipo -->
-    <div class="identidade">
-      <div class="selo">FB</div>
-      <div class="marca">
-        <p class="nome-banca">[F.B. Frutas Baraldi]</p>
-        <p class="segmento">[Hortifruti · Ceasa]</p>
-      </div>
+  <!-- IDENTIDADE -->
+  <section class="identidade">
+
+    <div class="logo">
+      FB
     </div>
 
-    <!-- Coluna direita: dados de contato -->
-    <div class="contato">
-      <div class="contato-topo">
-        <p class="titular">[Elissandro Romão]</p>
-        <p class="cargo">[Box/Pavilhão Nº ___]</p>
+    <div class="marca">
+      <h1 class="nome-banca">
+        F.B. Frutas<br>
+        Baraldi
+      </h1>
 
-        <div class="lista-info">
-          <div class="linha-info">
-            <span class="icone">
-              <!-- telefone -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </span>
-            <span>[(11) 96445-3348]</span>
-          </div>
+      <p class="segmento">
+        Hortifruti · Ceasa
+      </p>
+    </div>
 
-          <div class="linha-info">
-            <span class="icone">
-              <!-- e-mail -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-            </span>
-            <span>[elissandrogaroto@gmail.com]</span>
-          </div>
+  </section>
 
-          <div class="linha-info">
-            <span class="icone">
-              <!-- localização -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <span>[CEAGESP·São Paulo]</span>
-          </div>
-        </div>
-      </div>
 
-      <!-- Rodapé com link para rede social -->
-      <div class="rodape">
-        <a class="rede-link" href="[URL_DA_REDE_SOCIAL]" target="_blank" rel="noopener">
-          <span class="icone-rede">
-            <!-- ícone genérico de rede social — trocar pelo logotipo desejado (Instagram/WhatsApp/Facebook) -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  <!-- CONTATO -->
+  <section class="contato">
+
+    <div class="contato-topo">
+
+      <span class="tag">
+        Comercial
+      </span>
+
+      <h2 class="titular">
+        Elissandro Romão
+      </h2>
+
+      <p class="cargo">
+        Box / Pavilhão Nº ___
+      </p>
+
+
+      <div class="lista-info">
+
+        <!-- Telefone -->
+        <div class="linha-info">
+
+          <span class="icone">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+              19.79 19.79 0 0 1-8.63-3.07
+              19.5 19.5 0 0 1-6-6
+              19.79 19.79 0 0 1-3.07-8.67
+              A2 2 0 0 1 4.11 2h3
+              a2 2 0 0 1 2 1.72
+              c.127.96.361 1.903.7 2.81
+              a2 2 0 0 1-.45 2.11L8.09 9.91
+              a16 16 0 0 0 6 6l1.27-1.27
+              a2 2 0 0 1 2.11-.45
+              c.907.339 1.85.573 2.81.7
+              A2 2 0 0 1 22 16.92z"/>
+            </svg>
           </span>
-          <span>[@usuario]</span>
-        </a>
-        <span class="cidade">[São Paulo/SP]</span>
+
+          <span>
+            (11) 96445-3348
+          </span>
+
+        </div>
+
+
+        <!-- E-mail -->
+        <div class="linha-info">
+
+          <span class="icone">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M22 6l-10 7L2 6"/>
+            </svg>
+          </span>
+
+          <span>
+            elissandrogaroto@gmail.com
+          </span>
+
+        </div>
+
+
+        <!-- Localização -->
+        <div class="linha-info">
+
+          <span class="icone">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10
+              a9 9 0 1 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+
+          <span>
+            CEAGESP · São Paulo
+          </span>
+
+        </div>
+
       </div>
+
     </div>
 
-  </div>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+
+      <a
+        class="rede-link"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <span class="icone-rede">
+
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+
+            <line
+              x1="8.59"
+              y1="13.51"
+              x2="15.42"
+              y2="17.49"
+            />
+
+            <line
+              x1="15.41"
+              y1="6.51"
+              x2="8.59"
+              y2="10.49"
+            />
+
+          </svg>
+
+        </span>
+
+        <span>
+          @usuario
+        </span>
+
+      </a>
+
+      <span class="cidade">
+        São Paulo / SP
+      </span>
+
+    </footer>
+
+  </section>
+
+</div>
 
 </body>
 </html>
